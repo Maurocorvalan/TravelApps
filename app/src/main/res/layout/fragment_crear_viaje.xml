@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/nombreEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Nombre del viaje" />
+
+    <EditText
+        android:id="@+id/descripcionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:hint="Descripción" />
+
+    <EditText
+        android:id="@+id/fechaInicioEditText"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:hint="Fecha de inicio (YYYY-MM-DD)" />
+
+    <EditText
+        android:id="@+id/fechaFinEditText"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:hint="Fecha de fin (YYYY-MM-DD)" />
+
+    <Button
+        android:id="@+id/guardarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Viaje"
+        android:onClick="guardarViaje"/>
+</LinearLayout>
