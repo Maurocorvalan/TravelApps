@@ -18,6 +18,7 @@ import java.util.List;
 
 public class ViajeAdapter extends RecyclerView.Adapter<ViajeAdapter.ViajeViewHolder> {
     private List<Viaje> viajes = new ArrayList<>();
+
     private Context context;
     private OnEditButtonClickListener editButtonClickListener;
 

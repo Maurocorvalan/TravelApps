@@ -3,25 +3,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="32dp">
+    android:padding="32dp"
+    android:background="@android:color/white">
 
+    <!-- Imagen en la parte superior -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="266dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fotolog" />
+    <TextView
+        android:id="@+id/iniciarSesionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="INICIAR SESIÓN"
+        android:textSize="24sp"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
     <EditText
         android:id="@+id/correoEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Correo Electrónico"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edittext_background"
+    android:padding="12dp"
+    android:textColor="#333333"
+    android:textColorHint="#888888"
+    android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/contrasenaEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:background="@drawable/edittext_background"
+    android:padding="12dp"
+    android:textColor="#333333"
+    android:textColorHint="#888888"
+    android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión" />
+        android:background="#00BCD4"
+        android:backgroundTint="#00BCD4"
+        android:elevation="4dp"
+        android:padding="12dp"
+        android:text="Iniciar Sesión"
+        android:textColor="@android:color/white" />
 </LinearLayout>

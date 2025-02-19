@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- RecyclerView para los itinerarios -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewItinerarios"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnAñadirItinerario"
+        android:visibility="gone"/>
+
+    <!-- Mensaje cuando no hay itinerarios -->
+    <TextView
+        android:id="@+id/mensajeVacio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No hay itinerarios disponibles"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_above="@+id/btnAñadirItinerario"/>
+
+    <!-- Botón para añadir itinerario (SIEMPRE visible) -->
+    <Button
+        android:id="@+id/btnAñadirItinerario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:onClick="abrirModalCrearItinerario"
+        android:text="Añadir itinerario" />
+</RelativeLayout>

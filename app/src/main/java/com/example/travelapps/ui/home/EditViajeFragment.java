@@ -1,6 +1,5 @@
 package com.example.travelapps.ui.home;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,8 +20,6 @@ import com.example.travelapps.request.ApiService;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -66,6 +63,7 @@ public class EditViajeFragment extends Fragment {
             nombreEditText.setText(viaje.getNombre());
             descripcionEditText.setText(viaje.getDescripcion());
 
+            // Convertir las fechas de Date a String y asignarlas a los EditText
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             if (viaje.getFechaInicio() != null) {
                 fechaInicioEditText.setText(dateFormat.format(viaje.getFechaInicio()));
@@ -92,29 +90,29 @@ public class EditViajeFragment extends Fragment {
             return;
         }
 
-        // Convertir String a Date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        try {
-            Date fechaInicio = dateFormat.parse(fechaInicioStr);
-            Date fechaFin = dateFormat.parse(fechaFinStr);
 
             // Actualizar los datos del viaje
             viaje.setIdViaje(viaje.getIdViaje());
             viaje.setNombre(nombre);
             viaje.setDescripcion(descripcion);
-            viaje.setFechaInicio(fechaInicio);
-            viaje.setFechaFin(fechaFin);
+            viaje.setFechaInicioString(fechaInicioStr);
+            viaje.setFechaFinString(fechaFinStr);
+
             Log.d("Guardar Cambios", "ID: " + viaje.getIdViaje() + ", Nombre: " + viaje.getNombre() + ", Descripción: " + viaje.getDescripcion() +
-                    ", Fecha Inicio: " + fechaInicio + ", Fecha Fin: " + fechaFin);
+                    ", Fecha Inicio: " + viaje.getFechaInicio() + ", Fecha Fin: " + viaje.getFechaFin());
+
+            // Llamar al método para actualizar el viaje en la base de datos
             actualizarViaje(viaje);
-        } catch (ParseException e) {
-            Toast.makeText(getContext(), "Error en el formato de fecha. Usa yyyy-MM-dd", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+
     }
 
     private void actualizarViaje(Viaje viaje) {
+        String fechaInicioStr = fechaInicioEditText.getText().toString();
+        String fechaFinStr = fechaFinEditText.getText().toString();
+        viaje.setFechaInicioString(fechaInicioStr);
+        viaje.setFechaFinString(fechaFinStr);
         // Realizar la llamada para actualizar el viaje en la base de datos
+        Log.d("salida", viaje.toString());
         Call<Viaje> call = apiService.actualizarViaje(viaje.getIdViaje(), viaje);
         call.enqueue(new Callback<Viaje>() {
             @Override

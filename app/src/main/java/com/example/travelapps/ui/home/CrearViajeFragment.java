@@ -23,9 +23,11 @@ import com.example.travelapps.models.ViajeDTO;
 import com.example.travelapps.request.ApiClient;
 import com.example.travelapps.request.ApiService;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,8 +54,8 @@ public class CrearViajeFragment extends Fragment {
         guardarButton.setOnClickListener(v -> {
             String nombre = nombreEditText.getText().toString();
             String descripcion = descripcionEditText.getText().toString();
-            String fechaInicio = fechaInicioEditText.getText().toString();
-            String fechaFin = fechaFinEditText.getText().toString();
+            String fechaInicio = fechaInicioEditText.getText().toString().trim();
+            String fechaFin = fechaFinEditText.getText().toString().trim();
 
             if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(descripcion) || TextUtils.isEmpty(fechaInicio) || TextUtils.isEmpty(fechaFin)) {
                 Toast.makeText(getContext(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
@@ -97,8 +99,14 @@ public class CrearViajeFragment extends Fragment {
         ViajeDTO viajeDTO = new ViajeDTO();
         viajeDTO.setNombre(viaje.getNombre());
         viajeDTO.setDescripcion(viaje.getDescripcion());
-        viajeDTO.setFechaInicio(viaje.getFechaInicio());
-        viajeDTO.setFechaFin(viaje.getFechaFin());
+
+        // Formatear las fechas a String
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String fechaInicioStr = formatoFecha.format(viaje.getFechaInicio());
+        String fechaFinStr = formatoFecha.format(viaje.getFechaFin());
+
+        viajeDTO.setFechaInicio(fechaInicioStr);
+        viajeDTO.setFechaFin(fechaFinStr);
 
         // Crear la llamada para crear el viaje, pasando el token en el encabezado Authorization
         Call<ViajeDTO> call = apiService.crearViaje("Bearer " + token, viajeDTO);
@@ -110,18 +118,26 @@ public class CrearViajeFragment extends Fragment {
             public void onResponse(Call<ViajeDTO> call, Response<ViajeDTO> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Viaje creado con éxito", Toast.LENGTH_SHORT).show();
+                    Log.d("CrearViaje", "Respuesta exitosa: " + response.body());
                 } else {
-                    Log.d("CrearViajeFragment", response.message());
-                    Toast.makeText(getContext(), "Error al crear el viaje", Toast.LENGTH_SHORT).show();
+                    try {
+                        String errorResponse = response.errorBody() != null ? response.errorBody().string() : "Error desconocido";
+                        Log.e("CrearViaje", "Error: " + errorResponse);
+                        Toast.makeText(getContext(), "Error al crear el viaje: " + response.code(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<ViajeDTO> call, Throwable t) {
+                Log.e("CrearViaje", "Fallo de conexión: " + t.getMessage());
                 Toast.makeText(getContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
 
     private String obtenerToken() {

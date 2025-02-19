@@ -15,12 +15,13 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.TravelAPPS.PopupOverlay" />
+            android:background="#0777A3FF"
+            app:popupTheme="@style/Theme.TravelAPPS.PopupOverlay"
+            app:titleTextColor="@android:color/white"
+            app:subtitleTextColor="@android:color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

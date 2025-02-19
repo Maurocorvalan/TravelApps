@@ -2,36 +2,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@android:color/white">
 
     <EditText
         android:id="@+id/nombreEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="Nombre del viaje" />
+        android:hint="Nombre del viaje"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="#888888"
+        android:textColor="#333333"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/descripcionEditText"
         android:layout_width="match_parent"
         android:layout_height="63dp"
-        android:hint="Descripción" />
+        android:hint="Descripción"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="#888888"
+        android:textColor="#333333"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/fechaInicioEditText"
         android:layout_width="match_parent"
         android:layout_height="67dp"
-        android:hint="Fecha de inicio (YYYY-MM-DD)" />
+        android:hint="Fecha de inicio (YYYY-MM-DD)"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="#888888"
+        android:textColor="#333333"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/fechaFinEditText"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:hint="Fecha de fin (YYYY-MM-DD)" />
+        android:hint="Fecha de fin (YYYY-MM-DD)"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="#888888"
+        android:textColor="#333333"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/guardarButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#00BCD4"
+        android:textColor="@android:color/white"
+        android:onClick="guardarViaje"
         android:text="Guardar Viaje"
-        android:onClick="guardarViaje"/>
+        android:padding="12dp"
+        android:textSize="16sp" />
 </LinearLayout>

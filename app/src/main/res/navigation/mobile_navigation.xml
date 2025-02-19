@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.travelapps.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="Viajes"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_edit"
@@ -21,14 +21,48 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.travelapps.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="Galeria de fotos"
+        tools:layout="@layout/fragment_gallery">
+        <action
+            android:id="@+id/action_nav_gallery_to_nav_galeria"
+            app:destination="@id/nav_galeria" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_galeria"
+        android:name="com.example.travelapps.ui.gallery.GaleriaFragment"
+        android:label="Galería"
+        tools:layout="@layout/fragment_galeria" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.travelapps.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:label="Itinerarios"
+        tools:layout="@layout/fragment_slideshow" >
+        <action
+            android:id="@+id/action_nav_slideshow_to_nav_itinerarios"
+            app:destination="@id/nav_itinerarios" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_itinerarios"
+        android:name="com.example.travelapps.ui.slideshow.ItinerariosFragment"
+        android:label="Itinerarios"
+        tools:layout="@layout/fragment_itinerarios" >
+        <action
+            android:id="@+id/action_nav_itinerarios_to_nav_edit_itinerario"
+            app:destination="@id/nav_edit_itinerario" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_edit_itinerario"
+        android:name="com.example.travelapps.ui.slideshow.EditarItinerarioFragment"
+        android:label="Editar Itinerario"
+        tools:layout="@layout/fragment_editar_itinerario">
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/nav_edit_viaje"
@@ -40,9 +74,32 @@
             app:argType="com.example.travelapps.models.Viaje" />
     </fragment>
 
+
     <fragment
         android:id="@+id/nav_create_viaje"
         android:name="com.example.travelapps.ui.home.CrearViajeFragment"
         android:label="Crear viaje"
         tools:layout="@layout/fragment_crear_viaje" />
+
+    <fragment
+        android:id="@+id/nav_ver_gastos"
+        android:name="com.example.travelapps.ui.gastos.VerGastosFragment"
+        android:label="Ver Gastos"
+        tools:layout="@layout/fragment_ver_gastos" />
+    <fragment
+        android:id="@+id/nav_editar_gasto"
+        android:name="com.example.travelapps.ui.gastos.EditarGastoFragment"
+        android:label="Editar Gasto"
+        tools:layout="@layout/fragment_editar_gasto" />
+
+    <fragment
+        android:id="@+id/nav_gastos"
+        android:name="com.example.travelapps.ui.gastos.GastosFragment"
+        android:label="Gastos"
+        tools:layout="@layout/fragment_gastos">
+        <action
+            android:id="@+id/action_nav_gastos_to_nav_ver_gastos"
+            app:destination="@id/nav_ver_gastos" />
+    </fragment>
+
 </navigation>
